@@ -3,6 +3,7 @@ Sistema de gerenciamento de notas escolares.
 """
 from dataclasses import dataclass
 from typing import Dict, List
+from functools import reduce
 
 
 @dataclass
@@ -30,20 +31,25 @@ class Aluno:
 
     def adicionar_nota(self, disciplina: str, nota: float) -> None:
         """Adiciona uma nota para uma disciplina específica."""
-        raise NotImplementedError()
+        self.notas[disciplina].append(nota)
 
     def calcular_media(self, disciplina: str) -> float:
         """Calcula a média das notas de uma disciplina."""
-        raise NotImplementedError()
+        notas_por_disciplina = self.notas[disciplina]
+        quantidade_de_notas = len(notas_por_disciplina)
+        soma_de_notas = reduce(lambda x, y: x + y, notas_por_disciplina)
+        return soma_de_notas / quantidade_de_notas
 
     def verificar_aprovacao(self, disciplina: str) -> bool:
         """Verifica se o aluno está aprovado em uma disciplina."""
-        raise NotImplementedError()
+        media = self.calcular_media(disciplina)
+        media_minima = 60
+        return media >= media_minima
 
     def registrar_falta(self, disciplina: str) -> None:
         """Registra uma falta em uma disciplina."""
-        raise NotImplementedError()
+        self.faltas[disciplina] += 1
 
     def calcular_frequencia(self, disciplina: str, total_aulas: int) -> float:
         """Calcula a frequência do aluno em uma disciplina."""
-        raise NotImplementedError() 
+        return ((total_aulas - self.faltas[disciplina]) / total_aulas) * 100
