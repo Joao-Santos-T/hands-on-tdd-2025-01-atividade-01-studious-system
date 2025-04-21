@@ -1,6 +1,3 @@
-"""
-Sistema de gerenciamento de funcionários.
-"""
 from dataclasses import dataclass
 
 
@@ -34,7 +31,7 @@ class Funcionario:
         Returns:
             float: Salário bruto calculado baseado nas horas trabalhadas
         """
-        if self.horas_trabalhadas < 0 or self.salario_hora < 0:
+        if self.salario_hora < 0 or self.horas_trabalhadas < 0:
             raise ValueError("Horas trabalhadas e salário por hora devem ser não negativos.")
         return self.salario_hora * self.horas_trabalhadas
 
@@ -60,4 +57,4 @@ class Funcionario:
         comissao = self.calcular_comissao()
         if self.custo_empregador < 0:
             raise ValueError("Custo do empregador deve ser não negativo.")
-        return salario + self.custo_empregador + comissao
+        return salario + comissao + self.custo_empregador
