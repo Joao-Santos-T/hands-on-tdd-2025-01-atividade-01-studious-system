@@ -3,5 +3,10 @@
         "activityBar.background": "#342B2C",
         "titleBar.activeBackground": "#493D3E",
         "titleBar.activeForeground": "#FBFAFA"
-    }
+    },
+    "python.testing.pytestArgs": [
+        "exercicio-tdd"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
 }
