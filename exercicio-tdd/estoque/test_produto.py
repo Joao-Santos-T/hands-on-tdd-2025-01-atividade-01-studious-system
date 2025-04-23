@@ -41,10 +41,9 @@ class TestProduto(unittest.TestCase):
         self.assertTrue(resultado)
         self.assertEqual(self.produto.quantidade, 15)
 
-        # Remoção maior que o disponível
         resultado = self.produto.remover_estoque(20)
         self.assertFalse(resultado)
-        self.assertEqual(self.produto.quantidade, 15)  # Deve permanecer inalterado
+        self.assertEqual(self.produto.quantidade, 15)
 
     def test_verificar_estoque_baixo(self):
         """Verifica se a detecção de estoque baixo funciona corretamente."""
