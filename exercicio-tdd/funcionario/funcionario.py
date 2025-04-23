@@ -34,7 +34,7 @@ class Funcionario:
         Returns:
             float: Salário bruto calculado baseado nas horas trabalhadas
         """
-        raise NotImplementedError()
+        return self.salario_hora * self.horas_trabalhadas
 
     def calcular_custo_total(self) -> float:
         """Calcula o custo total do funcionário para a empresa.
@@ -42,7 +42,7 @@ class Funcionario:
         Returns:
             float: Custo total (salário + custos do empregador)
         """
-        raise NotImplementedError()
+        return self.calcular_salario_bruto() + self.custo_empregador
 
     def calcular_comissao(self) -> float:
         """Calcula o valor total da comissão do funcionário.
@@ -50,4 +50,6 @@ class Funcionario:
         Returns:
             float: Valor total da comissão baseado nos contratos fechados
         """
-        raise NotImplementedError() 
+        if self.tem_comissao:
+            return self.valor_comissao * self.contratos_fechados
+        return 0.0
